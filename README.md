@@ -1,6 +1,6 @@
-# Scanny
+# Snappy
 
-Scanny turns handheld photos of school papers into cleaned, searchable, automatically organized scans. This repository contains the MVP server and its lightweight document-library UI.
+Snappy turns handheld photos of school papers into cleaned, searchable, automatically organized scans. This repository contains the MVP server and its lightweight document-library UI.
 
 ## Quick start
 
@@ -24,7 +24,7 @@ The API is available at `http://localhost:8000`; interactive documentation is at
 
 Gemini Vision performs faithful Markdown transcription, title generation, and folder classification from the processed scan; set `GEMINI_API_KEY` in `backend/.env`. PaddleOCR is an optional emergency transcription fallback and is never loaded during successful Gemini processing. Install it with `pip install -r requirements-ocr.txt` if that fallback is desired. If both services are unavailable, the scan remains viewable under `Needs Review` with a timestamp-based title.
 
-After transcription, Scanny creates a Gemini text embedding from the title, folder, and Markdown content. The web and iOS Recent views use `/api/search` for per-user semantic retrieval; weak matches are filtered rather than returned merely because they rank highest. Existing documents are indexed lazily the first time search is used.
+After transcription, Snappy creates a Gemini text embedding from the title, folder, and Markdown content. The web and iOS Recent views use `/api/search` for per-user semantic retrieval; weak matches are filtered rather than returned merely because they rank highest. Existing documents are indexed lazily the first time search is used.
 
 ### Frontend
 
@@ -38,15 +38,15 @@ Open `http://localhost:5173`, create an account, and sign in. During development
 
 ### iOS
 
-The native SwiftUI companion lives in [`ios/Scanny.xcodeproj`](ios/Scanny.xcodeproj). It shares the web app's accounts, documents, folders, and server-side scanning pipeline. See [`ios/README.md`](ios/README.md) for Xcode, Simulator, physical-device, and LAN setup.
+The native SwiftUI companion lives in the [iOS Xcode project](ios/Scanny.xcodeproj). It shares the web app's accounts, documents, folders, and server-side scanning pipeline. See [`ios/README.md`](ios/README.md) for Xcode, Simulator, physical-device, and LAN setup.
 
 ## Configuration
 
-Copy `.env.example` to `backend/.env` if you want to override defaults. Images and SQLite data stay in `backend/data` by default. Semantic search is configured with `GEMINI_EMBEDDING_MODEL`, `SEMANTIC_SEARCH_MIN_SCORE`, and `SEMANTIC_SEARCH_MAX_RESULTS`. Set `SECURE_COOKIES=true` when serving Scanny over HTTPS in production.
+Copy `.env.example` to `backend/.env` if you want to override defaults. Images and SQLite data stay in `backend/data` by default. Semantic search is configured with `GEMINI_EMBEDDING_MODEL`, `SEMANTIC_SEARCH_MIN_SCORE`, and `SEMANTIC_SEARCH_MAX_RESULTS`. Set `SECURE_COOKIES=true` when serving Snappy over HTTPS in production.
 
 ## Deploy to Railway
 
-Scanny is packaged as one Docker service. Railway automatically detects the root `Dockerfile`, builds the Svelte SPA, installs the complete FastAPI/OpenCV/PaddleOCR stack, and starts FastAPI on Railway's injected `PORT`. FastAPI serves the web app, API, and protected media from the same domain.
+Snappy is packaged as one Docker service. Railway automatically detects the root `Dockerfile`, builds the Svelte SPA, installs the complete FastAPI/OpenCV/PaddleOCR stack, and starts FastAPI on Railway's injected `PORT`. FastAPI serves the web app, API, and protected media from the same domain.
 
 1. Push this repository to GitHub and create a Railway service from that repository. Leave the root directory at the repository root.
 2. Add the required service variable `GEMINI_API_KEY`. Do not commit the key to GitHub.
