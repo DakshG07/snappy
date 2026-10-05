@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+backend/data/scanny.db*
+backend/data/documents/*
+!backend/data/documents/.gitkeep
+backend/data/paddle/
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/
+ios/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+*.xcuserstate
